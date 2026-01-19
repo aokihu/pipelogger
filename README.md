@@ -17,10 +17,10 @@ Pipelog is a small logging helper that writes formatted output into a named pipe
 
 ## Installation
 ```sh
-bun add pipelog
-npm install pipelog
-pnpm add pipelog
-yarn add pipelog
+bun add pipelogger
+npm install pipelogger
+pnpm add pipelogger
+yarn add pipelogger
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ mkfifo /tmp/pipelog-example
 ```
 
 ```ts
-import { Pipelog } from "pipelog";
+import { Pipelog } from "pipelogger";
 
 const pipepath = "/tmp/pipelog-example";
 const logger = Pipelog.factory(pipepath);

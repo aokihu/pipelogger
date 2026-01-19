@@ -17,10 +17,10 @@ Pipelog 是一个将日志输出写入命名管道（FIFO）的轻量工具，�
 
 ## 安装
 ```sh
-bun add pipelog
-npm install pipelog
-pnpm add pipelog
-yarn add pipelog
+bun add pipelogger
+npm install pipelogger
+pnpm add pipelogger
+yarn add pipelogger
 ```
 
 ## 使用
@@ -31,7 +31,7 @@ mkfifo /tmp/pipelog-example
 ```
 
 ```ts
-import { Pipelog } from "pipelog";
+import { Pipelog } from "pipelogger";
 
 const pipepath = "/tmp/pipelog-example";
 const logger = Pipelog.factory(pipepath);
