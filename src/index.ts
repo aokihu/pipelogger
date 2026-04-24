@@ -1,7 +1,7 @@
 /**
  * Pipelog
  * @author aokihu <aokihu@gmail.com>
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 import { createWriteStream, type WriteStream } from "node:fs";

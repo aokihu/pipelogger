@@ -1,7 +1,7 @@
 {
   "name": "pipelogger",
   "author": "aokihu",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Using named pipes for output debugging",
   "repository": {
     "type": "git",
@@ -10,7 +10,8 @@
   "keywords": [
     "log",
     "debug",
-    "develop"
+    "develop",
+    "namedpipe"
   ],
   "license": "MIT",
   "type": "module",
