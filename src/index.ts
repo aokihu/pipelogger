@@ -16,13 +16,19 @@ export class Pipelog {
   private readonly _pipepath: string;
   private readonly _pipeStream: WriteStream;
   private readonly _encoding: BufferEncoding;
+  private readonly _timeformat: "long" | "short" | "none";
 
   private constructor(
     pipepath: string,
-    options: { encoding?: BufferEncoding } = {},
+    options: {
+      encoding?: BufferEncoding;
+      timeformat?: "long" | "short" | "none";
+    } = {},
   ) {
     this._pipepath = pipepath;
     this._encoding = options.encoding ?? "utf8";
+    this._timeformat = options.timeformat ?? "none";
+
     this._pipeStream = createWriteStream(pipepath, {
       flags: "a",
       encoding: this._encoding,
@@ -54,15 +60,26 @@ export class Pipelog {
     this._pipeStream.write(content, this._encoding);
   }
 
+  private _getTimestamp() {
+    if (this._timeformat === "none") return;
+    const date = new Date();
+    return this._timeformat === "short"
+      ? date.toISOString().slice(0, 19).replace("T", " ")
+      : date.toISOString();
+  }
+
   /**
    * Print log output
    * @param message {any[]} The print message;
    */
   log(...message: unknown[]) {
-    const timestamp = new Date().toISOString();
     message.forEach((payload) => {
       const formatted = this._formatPayload(payload);
-      this._writeStream(`[${timestamp}] ${formatted}\n`);
+      this._writeStream(
+        this._timeformat === "none"
+          ? formatted + "\n"
+          : `[${this._getTimestamp()}] ${formatted}\n`,
+      );
     });
   }
 
